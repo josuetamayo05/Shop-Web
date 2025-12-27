@@ -8,5 +8,14 @@ export const router = createBrowserRouter([
   { path: "/", element: <HomePage /> },
   { path: "/catalog", element: <CatalogPage /> },
   { path: "/cart", element: <CartPage /> },
-  { path: "/product/:productId", element: <ProductPage />}
+  { path: "/product/:productId", element: <ProductPage />},
+  //agrega una ruta placeholder si aún no tienes checkout
+  { path: "/checkout",
+    element: (
+      <div style={{padding: 24}}>
+        <h1>Checkout</h1>
+        <p>Lo implementamos en el siguiente paso</p>
+      </div>
+    ),
+  }
 ]);
