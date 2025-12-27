@@ -1,0 +1,20 @@
+{
+  "brand": {
+    "name": "E-commerce Template",
+    "logoText": "ET"
+  },
+  "navigation": [
+    { "label": "Inicio", "to": "/" },
+    { "label": "Catálogo", "to": "/catalog" },
+    { "label": "Carrito", "to": "/cart" }
+  ],
+  "home": {
+    "heroTitle": "Compra mejor, más rápido",
+    "heroSubtitle": "Plantilla reusable en React para cualquier negocio.",
+    "primaryCta": { "label": "Ver catálogo", "to": "/catalog" },
+    "secondaryCta": { "label": "Ir al carrito", "to": "/cart" }
+  },
+  "footer": {
+    "text": "© {{year}} E-commerce Template. Todos los derechos reservados."
+  }
+}

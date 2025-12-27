@@ -1,0 +1,40 @@
+{
+    "currency": "EUR",
+    "categories":[
+        { "id": "ropa", "name": "Ropa" },
+        { "id": "accesorios", "name": "Accesorios"},
+        { "id": "hogar", "name" : "Hogar"}
+    ],
+    "products": [
+        {
+            "id": "polo-premium",
+            "name": "Polo Premium",
+            "description": "Algodón 100%. Corte moderno.",
+            "price": 24.99,
+            "categoryId": "ropa",
+            "images": ["public/products/4014540-0605V1.jpg"],
+            "stock": 12,
+            "tags": ["nuevo"]
+            },
+            {
+            "id": "gorra-urbana",
+            "name": "Gorra Urbana",
+            "description": "Ajustable, estilo minimal.",
+            "price": 14.5,
+            "categoryId": "accesorios",
+            "images": ["public/products/6606-adult-retro-trucker-cap.jpg"],
+            "stock": 30
+            },
+            {
+            "id": "taza-mate",
+            "name": "Taza Mate",
+            "description": "Cerámica, 350ml. Ideal para oficina.",
+            "price": 9.99,
+            "categoryId": "hogar",
+            "images": ["public/products/4014540-0605V1.jpg"],
+            "stock": 0,
+            "tags": ["agotado"]
+        }
+    ]
+
+}
