@@ -1,0 +1,11 @@
+{
+  "taxRate": 0.21,
+  "shippingMethods": [
+    { "id": "standard", "name": "Estándar", "price": 4.99, "etaDays": [2, 4] },
+    { "id": "express", "name": "Express", "price": 9.99, "etaDays": [1, 2] }
+  ],
+  "paymentMethods": [
+    { "id": "card", "name": "Tarjeta (simulado)" },
+    { "id": "cash", "name": "Contra reembolso (simulado)" }
+  ]
+}

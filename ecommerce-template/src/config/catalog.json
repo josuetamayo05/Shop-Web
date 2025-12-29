@@ -26,14 +26,15 @@
             "stock": 30
             },
             {
-            "id": "taza-mate",
-            "name": "Taza Mate",
-            "description": "Cerámica, 350ml. Ideal para oficina.",
-            "price": 9.99,
-            "categoryId": "hogar",
-            "images": ["/public/products/4014540-0605V1.jpg"],
-            "stock": 0,
-            "tags": ["agotado"]
+            "id": "bicicleta",
+            "name": "Bicicleta China",
+            "description": "Bicicleta versátil de fabricación china, ideal para moverte por la ciudad y paseos de fin de semana. Diseño cómodo, ligero y fácil de mantener, pensada para quienes buscan una opción práctica sin complicaciones. Su geometría estable ayuda a tener una conducción segura y agradable en trayectos diarios.",
+            "price": 59.99,
+            "categoryId": "transporte",
+            "images": ["/public/products/bici.jpeg"],
+            "stock": 1,
+            "tags": ["uso"]
+            
         }
     ]
 
