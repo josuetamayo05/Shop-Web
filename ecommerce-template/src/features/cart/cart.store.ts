@@ -9,34 +9,48 @@ export type CartItem = {
 type CartState = {
     items: CartItem[];
 
-    addToCart: (productId: string, qty?: number) => void;
+    addToCart: (productId: string, qty?: number, maxQty?: number) => void;
     removeFromCart: (productId: string) => void;
-    setQuantity: (productId: string, qty: number) => void;
+    setQuantity: (productId: string, qty: number, maxQty?: number) => void;
     clearCart: () => void;
 };
+
+function normalizeQty(qty: number){
+  const n = Number.isFinite(qty) ? Math.floor(qty):1;
+  return n
+}
+
+function clampQty(qty: number, maxQty?: number){
+  if(typeof maxQty==="number" && Number.isFinite(maxQty)){
+    return Math.min(qty,Math.floor(maxQty));
+  }
+  return qty;
+}
 
 export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       items: [],
 
-      addToCart: (productId, qty = 1) => {
-        const amount = Number.isFinite(qty) ? Math.floor(qty) : 1;
-        if (amount <= 0) return;
+      addToCart: (productId, qty = 1, maxQty) => {
+        let amount=normalizeQty(qty);
+        if(amount<=0)return;
 
-        const items = get().items;
-        const existing = items.find((i) => i.productId === productId);
+        const items=get().items;
+        const existing=items.find((i)=>i.productId===productId);
 
-        if (!existing) {
-          set({ items: [...items, { productId, quantity: amount }] });
+        const currentQty=existing?.quantity ?? 0;
+        const nextQty=clampQty(currentQty+ amount,maxQty);
+
+        // Si ya está al máximo, no cambies nada
+        if(nextQty===currentQty) return;
+        
+        if(!existing){
+          set({items: [...items,{productId,quantity: nextQty}]});
           return;
         }
-
         set({
-          items: items.map((i) =>
-            i.productId === productId
-              ? { ...i, quantity: i.quantity + amount }
-              : i
+          items: items.map((i) => i.productId === productId ? { ...i, quantity: nextQty } : i
           ),
         });
       },
@@ -45,18 +59,16 @@ export const useCartStore = create<CartState>()(
         set({ items: get().items.filter((i) => i.productId !== productId) });
       },
 
-      setQuantity: (productId, qty) => {
-        const amount = Number.isFinite(qty) ? Math.floor(qty) : 1;
-
-        if (amount <= 0) {
-          set({ items: get().items.filter((i) => i.productId !== productId) });
+      setQuantity: (productId, qty, maxQty) => {
+        let amount = normalizeQty(qty);
+        amount=clampQty(amount,maxQty)
+        
+        if(amount<=0){
+          set({ items: get().items.filter((i)=>i.productId!==productId)});
           return;
         }
 
-        set({
-          items: get().items.map((i) =>
-            i.productId === productId ? { ...i, quantity: amount } : i
-          ),
+        set({items:get().items.map((i)=>i.productId===productId?{...i,quantity: amount}:i),
         });
       },
 

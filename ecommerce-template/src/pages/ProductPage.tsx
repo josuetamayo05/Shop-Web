@@ -12,6 +12,11 @@ export function ProductPage() {
 
   const product = catalog.products.find((p) => p.id === productId);
 
+  const inCartQty = useCartStore((s)=>s.items.find((i)=>i.productId===productId)?.quantity??0);
+
+  const stock=typeof product?.stock==="number" ? product.stock:undefined;
+  const reachedMax = typeof stock === "number" && inCartQty>=stock;
+
   if (!product) {
     return (
       <AppLayout>
@@ -79,13 +84,13 @@ export function ProductPage() {
           </div>
 
           <button
-            disabled={isOut}
-            onClick={() => addToCart(product.id, 1)}
+            disabled={isOut || reachedMax}
+            onClick={() => addToCart(product.id, 1, stock)}
             className={`mt-6 w-full rounded-xl px-5 py-3 text-sm font-medium text-white ${
-              isOut ? "bg-slate-300" : "bg-slate-900 hover:bg-slate-800"
+              isOut || reachedMax ? "bg-slate-300" : "bg-slate-900 hover:bg-slate-800"
             }`}
           >
-            Añadir al carrito
+            {reachedMax ? "Máximo en carrito" : "Añadir al carrito"}
           </button>
         </div>
       </div>
