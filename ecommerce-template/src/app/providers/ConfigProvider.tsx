@@ -47,6 +47,12 @@ export function ConfigProvider({ children }: { children: React.ReactNode }) {
   return <ConfigContext.Provider value = {value}>{children}</ConfigContext.Provider>;
 }
 
+export function useConfig(): SiteConfig {
+  const ctx = useContext(ConfigContext);
+  if (!ctx) throw new Error("useConfig must be used within <ConfigProvider>");
+  return ctx.config;
+}
+
 export function useConfigActions() {
   const ctx = useContext(ConfigContext);
   if(!ctx) throw new Error("useConfigActions must be used within ConfigProvider");

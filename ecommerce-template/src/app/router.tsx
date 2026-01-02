@@ -5,6 +5,7 @@ import { CartPage } from "../pages/CartPage";
 import { ProductPage } from "../pages/ProductPage";
 import { CheckoutPage } from "../pages/CheckoutPage";
 import { OrderPage } from "../pages/OrderPage";
+import { AdminPage } from "../pages/AdminPage";
 
 export const router = createBrowserRouter([
   { path: "/", element: <HomePage /> },
@@ -13,6 +14,7 @@ export const router = createBrowserRouter([
   { path: "/checkout", element: <CheckoutPage /> },
   { path: "/order/:orderId", element: <OrderPage /> },
   { path: "/product/:productId", element: <ProductPage />},
+  { path: "/admin", element: <AdminPage /> },
   //agrega una ruta placeholder si aún no tienes checkout
   { path: "/checkout",
     element: (
